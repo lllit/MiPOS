@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Formularios;
 
 /**
@@ -14,7 +11,13 @@ public class FormClientes extends javax.swing.JInternalFrame {
      * Creates new form FormClientes
      */
     public FormClientes() {
+        
+        
         initComponents();
+        Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
+        objetoCliente.mostrarCliente(tbclientes);
+        txtidcliente.setEnabled(false);
+        
     }
 
     /**
@@ -75,6 +78,7 @@ public class FormClientes extends javax.swing.JInternalFrame {
         txtappaterno = new javax.swing.JTextField();
         txtapmaterno = new javax.swing.JTextField();
         btnlimpiarcampos2 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -329,10 +333,25 @@ public class FormClientes extends javax.swing.JInternalFrame {
         );
 
         btneliminarCliente.setText("Eliminar");
+        btneliminarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarClienteActionPerformed(evt);
+            }
+        });
 
         btnmodificarCliente.setText("Modificar");
+        btnmodificarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarClienteActionPerformed(evt);
+            }
+        });
 
         btnguardarCliente.setText("Guardar");
+        btnguardarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarClienteActionPerformed(evt);
+            }
+        });
 
         tbclientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -345,6 +364,11 @@ public class FormClientes extends javax.swing.JInternalFrame {
 
             }
         ));
+        tbclientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbclientesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tbclientes);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Cliente"));
@@ -364,6 +388,11 @@ public class FormClientes extends javax.swing.JInternalFrame {
         });
 
         btnlimpiarcampos2.setText("Limpiar campos");
+        btnlimpiarcampos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlimpiarcampos2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -410,6 +439,8 @@ public class FormClientes extends javax.swing.JInternalFrame {
                 .addGap(14, 14, 14))
         );
 
+        jLabel15.setText("Seleccionar para Modificar o Eliminar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -421,9 +452,13 @@ public class FormClientes extends javax.swing.JInternalFrame {
                 .addComponent(btnguardarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnmodificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addGap(88, 88, 88)
                 .addComponent(btneliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 386, Short.MAX_VALUE)
@@ -439,12 +474,15 @@ public class FormClientes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel15)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btneliminarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(btnmodificarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btneliminarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                        .addComponent(btnmodificarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(btnguardarCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 20, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,6 +512,43 @@ public class FormClientes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtappaternoActionPerformed
 
+    private void btnguardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarClienteActionPerformed
+        Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
+        objetoCliente.agregarCliente(txtnombrescliente, txtappaterno, txtapmaterno);
+        objetoCliente.mostrarCliente(tbclientes);
+        
+        objetoCliente.limpiarCamposClientes(txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
+    }//GEN-LAST:event_btnguardarClienteActionPerformed
+
+    private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
+        Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
+        objetoCliente.selecionar(tbclientes, txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
+    }//GEN-LAST:event_tbclientesMouseClicked
+
+    private void btnmodificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarClienteActionPerformed
+        Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
+        objetoCliente.modificarCliente(txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
+        
+        objetoCliente.mostrarCliente(tbclientes);
+        
+        objetoCliente.limpiarCamposClientes(txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
+               
+    }//GEN-LAST:event_btnmodificarClienteActionPerformed
+
+    private void btneliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarClienteActionPerformed
+        Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
+        objetoCliente.eliminarClientes(txtidcliente);
+        
+        objetoCliente.mostrarCliente(tbclientes);
+        
+        objetoCliente.limpiarCamposClientes(txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
+    }//GEN-LAST:event_btneliminarClienteActionPerformed
+
+    private void btnlimpiarcampos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarcampos2ActionPerformed
+        Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente(); 
+        objetoCliente.limpiarCamposClientes(txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
+    }//GEN-LAST:event_btnlimpiarcampos2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btneliminar;
@@ -496,6 +571,7 @@ public class FormClientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

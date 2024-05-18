@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Formularios;
+
+import Controlador.ControladorVenta;
 
 /**
  *
@@ -15,6 +14,20 @@ public class FormVentas extends javax.swing.JInternalFrame {
      */
     public FormVentas() {
         initComponents();
+        
+        txtSIdProducto.setEnabled(false);
+        txtSnombreProducto.setEnabled(false);
+        txtSPrecio.setEnabled(false);
+        txtSStock.setEnabled(false);
+        txtSPrecioVenta.setEnabled(false);
+        
+        txtSidCliente.setEnabled(false);
+        txtSNombreCliente.setEnabled(false);
+        txtSApPaterno.setEnabled(false);
+        txtSApMaterno.setEnabled(false);
+        
+        Controlador.ControladorVenta objetoVenta = new ControladorVenta();
+        objetoVenta.mostrarUltimaFactura(lblUltimaFactura);
     }
 
     /**
@@ -67,7 +80,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
         btnAgregarProductos = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        lblUltimaFactura = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         btnEliminarResumenVenta = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -86,6 +99,15 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Buscador:");
 
+        txtBuscarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarClienteKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarClienteKeyTyped(evt);
+            }
+        });
+
         tbClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -97,6 +119,11 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
             }
         ));
+        tbClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbClientes);
 
         jLabel2.setText("Click para seleccionar");
@@ -137,6 +164,17 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Buscador:");
 
+        txtBuscarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarProductosActionPerformed(evt);
+            }
+        });
+        txtBuscarProductos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarProductosKeyReleased(evt);
+            }
+        });
+
         tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -148,6 +186,11 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
             }
         ));
+        tbProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbProductosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbProductos);
 
         jLabel4.setText("Click para seleccionar");
@@ -195,6 +238,14 @@ public class FormVentas extends javax.swing.JInternalFrame {
         jLabel7.setText("Ap.Paterno:");
 
         jLabel8.setText("Ap.Materno:");
+
+        txtSidCliente.setDisabledTextColor(new java.awt.Color(51, 102, 0));
+
+        txtSNombreCliente.setDisabledTextColor(new java.awt.Color(51, 102, 0));
+
+        txtSApPaterno.setDisabledTextColor(new java.awt.Color(51, 102, 0));
+
+        txtSApMaterno.setDisabledTextColor(new java.awt.Color(51, 102, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -247,17 +298,42 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
         jLabel12.setText("Stock:");
 
+        txtSIdProducto.setDisabledTextColor(new java.awt.Color(51, 102, 0));
+
+        txtSnombreProducto.setDisabledTextColor(new java.awt.Color(51, 102, 0));
+
+        txtSPrecio.setDisabledTextColor(new java.awt.Color(51, 102, 0));
+
+        txtSStock.setDisabledTextColor(new java.awt.Color(51, 102, 0));
+
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Precio y Cantidad"));
 
         jLabel13.setText("Precio de Venta:");
 
+        txtSPrecioVenta.setDisabledTextColor(new java.awt.Color(204, 0, 0));
+
         btnHabilitar.setText("Habilitar");
+        btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHabilitarActionPerformed(evt);
+            }
+        });
 
         btnDeshabilitar.setText("Deshabilitar");
+        btnDeshabilitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeshabilitarActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Cantidad de venta:");
 
         btnAgregarProductos.setText("Agregar Producto");
+        btnAgregarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarProductosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -372,20 +448,22 @@ public class FormVentas extends javax.swing.JInternalFrame {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setText("Ultima Factura Creada:");
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel16.setText("----");
+        lblUltimaFactura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUltimaFactura.setForeground(new java.awt.Color(153, 153, 153));
+        lblUltimaFactura.setText("----");
 
         jLabel17.setText("Seleccionar para Eliminar");
 
         btnEliminarResumenVenta.setText("Eliminar");
+        btnEliminarResumenVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarResumenVentaActionPerformed(evt);
+            }
+        });
 
         tbResumenVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "idProducto", "NProducto", "PrecioProd.", "Canti.Prod.", "SubTotal"
@@ -394,7 +472,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(tbResumenVenta);
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel18.setText("IVA (18%):");
+        jLabel18.setText("IVA (19%):");
 
         lblIVA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblIVA.setText("----");
@@ -406,6 +484,11 @@ public class FormVentas extends javax.swing.JInternalFrame {
         lblTotal.setText("----");
 
         btnCobrar.setText("Cobrar");
+        btnCobrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCobrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -418,7 +501,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel16)
+                        .addComponent(lblUltimaFactura)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -442,7 +525,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jLabel16)
+                    .addComponent(lblUltimaFactura)
                     .addComponent(jLabel17)
                     .addComponent(btnEliminarResumenVenta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -493,6 +576,63 @@ public class FormVentas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtBuscarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyTyped
+        
+    }//GEN-LAST:event_txtBuscarClienteKeyTyped
+
+    private void txtBuscarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarProductosActionPerformed
+
+    private void txtBuscarProductosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProductosKeyReleased
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.buscarProducto(txtBuscarProductos, tbProductos);
+    }//GEN-LAST:event_txtBuscarProductosKeyReleased
+
+    private void tbProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMouseClicked
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.seleccionarProductosVenta(tbProductos, txtSIdProducto, txtSnombreProducto, txtSPrecio, txtSStock, txtSPrecioVenta);
+    }//GEN-LAST:event_tbProductosMouseClicked
+
+    private void txtBuscarClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyReleased
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.buscarCliente(txtBuscarCliente, tbClientes);
+    }//GEN-LAST:event_txtBuscarClienteKeyReleased
+
+    private void tbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClientesMouseClicked
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.seleccionarClienteVenta(tbClientes, txtSidCliente, txtSNombreCliente, txtSApPaterno,txtSApMaterno);
+    }//GEN-LAST:event_tbClientesMouseClicked
+
+    private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.pasarProductosVentas(tbResumenVenta, txtSIdProducto, txtSnombreProducto, txtSPrecioVenta, txtCantidadVenta, txtSStock);
+        objetoVenta.calcularTotalPagar(tbResumenVenta, lblIVA, lblTotal);
+        
+    }//GEN-LAST:event_btnAgregarProductosActionPerformed
+
+    private void btnEliminarResumenVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarResumenVentaActionPerformed
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.eliminarProductosSeleccionadoResumenVenta(tbResumenVenta);
+        objetoVenta.calcularTotalPagar(tbResumenVenta, lblIVA, lblTotal);
+    }//GEN-LAST:event_btnEliminarResumenVentaActionPerformed
+
+    private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.crearFactura(txtSidCliente);
+        objetoVenta.realizarVenta(tbResumenVenta);
+        objetoVenta.limpiarCamposLuegoVenta(txtBuscarCliente, tbClientes, txtBuscarProductos, tbProductos, txtSidCliente, txtSNombreCliente, txtSApPaterno, txtSApMaterno, txtSIdProducto, txtSnombreProducto, txtSPrecio, txtSStock, txtSPrecioVenta, txtCantidadVenta, tbResumenVenta, lblIVA, lblTotal);
+        objetoVenta.mostrarUltimaFactura(lblUltimaFactura);
+    }//GEN-LAST:event_btnCobrarActionPerformed
+
+    private void btnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarActionPerformed
+        txtSPrecioVenta.setEnabled(true);
+    }//GEN-LAST:event_btnHabilitarActionPerformed
+
+    private void btnDeshabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshabilitarActionPerformed
+        txtSPrecioVenta.setEnabled(false);
+    }//GEN-LAST:event_btnDeshabilitarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductos;
@@ -507,7 +647,6 @@ public class FormVentas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
@@ -531,6 +670,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblIVA;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblUltimaFactura;
     private javax.swing.JTable tbClientes;
     private javax.swing.JTable tbProductos;
     private javax.swing.JTable tbResumenVenta;
