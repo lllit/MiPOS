@@ -15,7 +15,7 @@ public class CConexion {
     Connection conectar = null;
     
     String usuario="root";
-    String contraseña="Homero123";
+    String contraseña="contraseña";
     String bd="dbpos";
     String ip="localhost";
     String puerto="3306";
